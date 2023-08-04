@@ -6,8 +6,7 @@ import passport from "passport";
 import config from "config";
 
 import { log } from "./log";
-
-import { Services } from "../services/services";
+import errorMiddleware from "./middlewares/error";
 
 const apiPath = "/api";
 const NODE_ENV = config.get<string>("NODE_ENV");
@@ -36,12 +35,12 @@ export default class Http {
 
         // passport
         app.use(passport.initialize());
-     
 
         // register handler routes
         app.get("/", (req, res) => {
-            res.send("edubaloo backend service");
+            res.send("unstack lab backend service");
         });
+        app.use(errorMiddleware);
 
         if (NODE_ENV !== "test") {
             app.listen(port, () => { log.info("starting express server"); });
