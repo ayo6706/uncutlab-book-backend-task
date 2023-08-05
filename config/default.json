@@ -1,0 +1,8 @@
+{
+    "DBUri": "mongodb://127.0.0.1:27017/edubaloo",
+    "JWT_SECRET": "defsec001",
+    "NODE_ENV": "local-dev",
+    "PORT": "3000",
+    "API_VERSION": "v1"
+
+}

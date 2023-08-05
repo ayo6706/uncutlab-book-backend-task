@@ -2,7 +2,6 @@
 import winston, { format } from "winston";
 import config from "config";
 
-
 const {
     combine, timestamp, label, printf,
 } = format;

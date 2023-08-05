@@ -11,3 +11,8 @@ export class ServiceError extends Error {
         this.name = "ServiceError";
     }
 }
+export const ErrExistingUserEmail = new ServiceError("user with this email already exists");
+export const ErrIncorrectCredentials = new ServiceError("one or both of your login credentials is invalid");
+export const ErrIncorrectPassword = new ServiceError("password is incorrect");
+export const ErrUserDoesNotExist = new ServiceError("User does not exist");
+export const ErrExistingUsername = new ServiceError("user with this username already exists");
