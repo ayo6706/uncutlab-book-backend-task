@@ -56,10 +56,10 @@ export default class Http {
             this.basePath(this.bookHandler.path()),
             this.bookHandler.routes(),
         );
-        if (NODE_ENV === "local-dev") {
-            const swagger = new SwaggerHandler();
-            app.use(this.basePath(swagger.path()), swagger.routes());
-        }
+      
+        const swagger = new SwaggerHandler();
+        app.use(this.basePath(swagger.path()), swagger.routes());
+
         app.use(errorMiddleware);
 
         if (NODE_ENV !== "test") {

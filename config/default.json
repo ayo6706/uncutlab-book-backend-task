@@ -1,5 +1,5 @@
 {
-    "DBUri": "mongodb://127.0.0.1:27017/edubaloo",
+    "DBUri": "postgresql://postgres:smR0iwx55SMIDGnLKIRJ@containers-us-west-175.railway.app:6140/railway",
     "JWT_SECRET": "defsec001",
     "NODE_ENV": "local-dev",
     "PORT": "3000",
