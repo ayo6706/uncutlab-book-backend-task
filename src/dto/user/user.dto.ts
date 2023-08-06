@@ -72,6 +72,8 @@ export interface UserRegistrationObjDto extends UserDto {
  *    required:
  *     - password
  *    properties:
+ *     email:
+ *      $ref: '#/components/properties/Email'
  *     password:
  *      $ref: '#/components/properties/Password'
  *   UserRegistration:
@@ -80,23 +82,6 @@ export interface UserRegistrationObjDto extends UserDto {
  *       - firstname
  *       - lastname
  *       - email
- *       - password
- *     properties:
- *       firstname:
- *        $ref: '#/components/properties/Firstname'
- *       lastname:
- *        $ref: '#/components/properties/Lastname'
- *       email:
- *        $ref: '#/components/properties/Email'
- *       password:
- *        $ref: '#/components/properties/Password'
- *   CreateAdmin:
- *     type: object
- *     required:
- *       - firstname
- *       - lastname
- *       - email
- *       - phone
  *       - password
  *     properties:
  *       firstname:
