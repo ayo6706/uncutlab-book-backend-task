@@ -69,6 +69,46 @@ export default class BookHandler implements Handler {
         }
     }
 
+
+     /**
+     * @openapi
+     * /book:
+     *   patch:
+     *     tags:
+     *      - Book
+     *     summary: create a new book
+     *     requestBody:
+     *      $ref: '#/components/requestBodies/UpdateBook'
+     *     responses:
+     *        200:
+     *          description: book successfully created
+     *     security:
+     *      - bearerAuth: []
+     */
+     async updateBook(req: AuthRequest, res: Response, next: NextFunction) {
+        try {
+            const {
+                id,
+                title,
+                author,
+            } = req.body;
+            if (!fieldIsNotEmpty(id)) {
+                return next(errors.ErrMissingParameter);
+            }
+            const book = {
+                id,
+                title,
+                author,
+            };
+            const result = await this.service.updateBook(
+                book,
+            );
+            return ok("book successfully updated", result).send(res);
+        } catch (error: any) {
+            return next(error);
+        }
+    }
+
     /**
      * @openapi
      * /book:

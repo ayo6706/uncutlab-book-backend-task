@@ -8,6 +8,11 @@ export default function routes(handler: any): express.Router {
         passport.authenticate("jwt", { session: false }),
         handler.createBook.bind(handler),
     );
+    router.patch(
+        "/",
+        passport.authenticate("jwt", { session: false }),
+        handler.updateBook.bind(handler),
+    );
     router.get(
         "/",
         passport.authenticate("jwt", { session: false }),
