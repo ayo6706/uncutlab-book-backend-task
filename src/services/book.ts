@@ -1,6 +1,7 @@
 import { BookDto } from "../dto/book/book.dto";
 import BookMapper from "../dto/book/book.mapper";
 import BookRepository from "../repository/book/book.repository";
+import * as errors from "../errors/services";
 import { failedPromise } from "./util";
 
 export default class BookService {
@@ -10,7 +11,7 @@ export default class BookService {
         try {
             const bookExists = await this.repo.getBookByTitle(book.title!);
             if (bookExists) {
-                return failedPromise("book already exists");
+                return failedPromise(errors.ErrExistingBook);
             }
 
             const result = await this.repo.createUser(book);
@@ -25,7 +26,7 @@ export default class BookService {
             const bookExists = await this.repo.getBookById(book.id!);
 
             if (!bookExists) {
-                return failedPromise("Book not found");
+                return failedPromise(errors.ErrBookDoesNotExist);
             }
 
             const updatedBook = await this.repo.updateBook(book);

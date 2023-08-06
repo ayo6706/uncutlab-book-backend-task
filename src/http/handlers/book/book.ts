@@ -53,7 +53,6 @@ export default class BookHandler implements Handler {
                 title,
                 author,
             } = req.body;
-            const userID = req.user.id;
             if (!fieldIsNotEmpty(title)) {
                 return next(errors.ErrMissingParameter);
             }

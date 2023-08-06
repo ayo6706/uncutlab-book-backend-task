@@ -16,3 +16,6 @@ export const ErrIncorrectCredentials = new ServiceError("one or both of your log
 export const ErrIncorrectPassword = new ServiceError("password is incorrect");
 export const ErrUserDoesNotExist = new ServiceError("User does not exist");
 export const ErrExistingUsername = new ServiceError("user with this username already exists");
+
+export const ErrExistingBook = new ServiceError("book already exists");
+export const ErrBookDoesNotExist = new ServiceError("book not found");
