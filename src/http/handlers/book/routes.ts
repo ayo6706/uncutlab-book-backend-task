@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 import passport from "passport";
-import { uploadFile } from "../../../lib/file";
+import uploadFile from "../../../lib/file";
 
 export default function routes(handler: any): express.Router {
     const router = Router();
@@ -22,7 +22,6 @@ export default function routes(handler: any): express.Router {
     );
     router.get(
         "/find",
-        passport.authenticate("jwt", { session: false }),
         handler.getBooks.bind(handler),
     );
     router.delete(

@@ -1,6 +1,6 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
 import bcrypt from "bcrypt";
-import { DB_TABLE_NAMES } from "../../helpers/constants";
+import DB_TABLE_NAMES from "../../helpers/constants";
 
 class User extends Model {
     public firstname!: string;

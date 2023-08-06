@@ -1,5 +1,5 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
-import { DB_TABLE_NAMES } from "../../helpers/constants";
+import DB_TABLE_NAMES from "../../helpers/constants";
 
 class Book extends Model {
     public title!: string;
@@ -22,8 +22,8 @@ const BookModel = (sequelizeInstance: Sequelize) => {
             },
             file: {
                 type: DataTypes.STRING,
-                allowNull: true
-            }
+                allowNull: true,
+            },
         },
         {
             sequelize: sequelizeInstance,

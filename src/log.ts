@@ -9,10 +9,8 @@ const container = new winston.Container();
 const myFormat = printf(({
     level, message, label, timestamp,
 }) => `${timestamp} [${label}] ${level}: ${message}`);
-// MongoDBLogTTL is the time to live for logs in seconds.
-const MongoDBLogTTL = 12441600;
+
 const ProductionEnvironment = "production";
-const DevelopmentEnvironment = "development";
 
 export let log: winston.Logger;
 

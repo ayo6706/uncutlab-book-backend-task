@@ -3,7 +3,7 @@ import User from "./model";
 import UserRepository from "./user.repository";
 import { log } from "../log";
 import DatabaseError from "../../errors/database";
-import { PostgresqlConnect } from "../dbconn";
+import PostgresqlConnect from "../dbconn";
 
 const UserDB = UserModel(PostgresqlConnect);
 

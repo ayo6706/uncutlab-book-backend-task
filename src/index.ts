@@ -8,7 +8,7 @@ import ServicesLogger from "./services/log";
 import HttpLogger from "./http/log";
 import UserRepositoryPostgreSql from "./repository/user/user.postgresql";
 import UserService from "./services/user";
-import { PostgresqlConnect } from "./repository/dbconn";
+import PostgresqlConnect from "./repository/dbconn";
 import BookService from "./services/book";
 import BookRepositoryPostgreSql from "./repository/book/model.postgresql";
 

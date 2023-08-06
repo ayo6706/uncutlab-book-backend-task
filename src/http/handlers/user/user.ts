@@ -147,49 +147,6 @@ export default class UserHandler implements Handler {
         }
     }
 
-        /**
-     * @openapi
-     * /user/reset-password:
-     *   post:
-     *     tags:
-     *      - User
-     *     summary: reset a user's password when forgotten
-     *     requestBody:
-     *      required: true
-     *      content:
-     *       application/json:
-     *        schema:
-     *         required:
-     *         - code
-     *         - phone
-     *         - password
-     *         properties:
-     *          code:
-     *            type: number
-     *          password:
-     *            type: string
-     *     responses:
-     *        200:
-     *          description: User password has been reset
-     *     security:
-     *      - bearerAuth: []
-     */
-
-    async resetUserPassword(req: AuthRequest, res: Response, next: NextFunction) {
-        const { phone, password } = req.body;
-
-        if (!fieldIsNotEmpty(phone, password)) {
-            return next(errors.ErrMissingParameter);
-        }
-
-        try {
-            const result = await this.service.resetUserPassword(req.body);
-            return ok("User Password has been reset", result).send(res);
-        } catch (error) {
-            return next(error);
-        }
-    }
-
     /**
      * @openapi
      * /user/change-password:

@@ -2,7 +2,7 @@ import { Op } from "sequelize";
 import BookRepository from "./book.repository";
 import { log } from "../log";
 import DatabaseError from "../../errors/database";
-import { PostgresqlConnect } from "../dbconn";
+import PostgresqlConnect from "../dbconn";
 import BookModel from "./book.postgresql";
 import { Book } from "./model";
 

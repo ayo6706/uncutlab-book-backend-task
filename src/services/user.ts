@@ -103,21 +103,4 @@ export default class UserService {
             throw (error);
         }
     }
-
-    async resetUserPassword(userObj: UpdatePasswordDto): Promise<UserDto> {
-        try {
-            const user = await this.repo.findUserByEmail(userObj.email!);
-            if (!user) {
-                return failedPromise(errors.ErrUserDoesNotExist);
-            }
-            const userUpdate: UpdatePasswordDto = {
-                id: user.id,
-                password: userObj.password,
-            };
-            await this.repo.updatePassword(userUpdate);
-            return UserMapper.toDto(user);
-        } catch (error: any) {
-            throw (error);
-        }
-    }
 }

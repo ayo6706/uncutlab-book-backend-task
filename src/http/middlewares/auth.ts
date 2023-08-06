@@ -1,9 +1,7 @@
 import { StrategyOptions, ExtractJwt, Strategy } from "passport-jwt";
-import { NextFunction, Response } from "express";
 import config from "config";
 import AuthRequest from "../../@types/authRequest";
-import { ErrUnauthorizedUser } from "../response/errors";
-import { PostgresqlConnect } from "../../repository/dbconn";
+import PostgresqlConnect from "../../repository/dbconn";
 import UserModel from "../../repository/user/model.postgresql";
 import User from "../../repository/user/model";
 
