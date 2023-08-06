@@ -99,11 +99,6 @@ export default class UserService {
                 return failedPromise(errors.ErrExistingUserEmail);
             }
 
-            const existingUserUsername = await this.repo.findUserByUsername(dto.username!);
-            if (existingUserUsername && existingUserUsername.username !== user.username) {
-                return failedPromise(errors.ErrExistingUsername);
-            }
-
             const updateDto = dto;
             const result = await this.repo.updateUser(UserMapper.toPersistence(updateDto));
             return UserMapper.toDto(result);

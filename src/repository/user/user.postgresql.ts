@@ -9,11 +9,11 @@ const UserDB = UserModel(PostgresqlConnect);
 
 export default class UserRepositoryPostgreSql implements UserRepository {
     async createUser(user: User): Promise<User> {
+        console.log("repo",user)
         try {
             const createdUser = await UserDB.create({
                 firstname: user.firstname,
                 lastname: user.lastname,
-                username: user.username,
                 email: user.email,
                 password: user.password,
             });
@@ -49,21 +49,7 @@ export default class UserRepositoryPostgreSql implements UserRepository {
             throw new DatabaseError(err);
         }
     }
-
-    async findUserByUsername(username: string): Promise<User> {
-        try {
-            const user = await UserDB.findOne({
-                where: {
-                    username,
-                },
-            });
-            return Promise.resolve(<User>user);
-        } catch (err: any) {
-            log.error(err);
-            throw new DatabaseError(err);
-        }
-    }
-
+    
     async updateUser(userObj: any): Promise<User> {
         const { id } = userObj;
         try {

@@ -32,7 +32,6 @@ export default class UserMapper {
             firstname: dto.firstname,
             lastname: dto.lastname,
             email: dto.email,
-            username: dto.username,
         };
     }
 
@@ -42,7 +41,6 @@ export default class UserMapper {
             firstname: user.firstname,
             lastname: user.lastname,
             email: user.email,
-            username: user.username,
             token: generateUserToken(user),
         };
     }
@@ -53,7 +51,6 @@ export default class UserMapper {
             firstname: user.firstname,
             lastname: user.lastname,
             email: user.email,
-            username: user.username,
             token: generateUserToken(user),
         };
     }
@@ -64,7 +61,6 @@ export default class UserMapper {
             firstname: user.firstname,
             lastname: user.lastname,
             email: user.email,
-            username: user.username,
         };
     }
 

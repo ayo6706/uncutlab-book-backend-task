@@ -9,8 +9,6 @@ class User extends Model {
 
     public email!: string;
 
-    public username!: string;
-
     public password!: string;
 
     public readonly createdAt!: Date;
@@ -26,29 +24,27 @@ const UserModel = (sequelizeInstance: Sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
             set(value: string) {
-                this.setDataValue("firstname", value.charAt(0).toUpperCase() + value.slice(1).toLowerCase());
+                if (value !== undefined) {
+                    this.setDataValue("firstname", value.charAt(0).toUpperCase() + value.slice(1).toLowerCase());
+                }
             },
         },
         lastname: {
             type: DataTypes.STRING,
             allowNull: false,
             set(value: string) {
+                if (value !== undefined) {
                 this.setDataValue("lastname", value.charAt(0).toUpperCase() + value.slice(1).toLowerCase());
+                }
             },
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false,
             unique: true,
             set(value: string) {
+                if (value !== undefined) {
                 this.setDataValue("email", value.toLowerCase());
-            },
-        },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            set(value: string) {
-                this.setDataValue("username", value.toLowerCase());
+                }
             },
         },
         password: {
@@ -66,7 +62,10 @@ const UserModel = (sequelizeInstance: Sequelize) => {
                     user.password = hash;
                 }
             },
-            afterFind(results: any) {
+            afterFind(results: User) {
+                if (results === null) {
+                    return;
+                }
                 if (results instanceof Array) {
                     for (const result of results) {
                         delete result.dataValues.password;
