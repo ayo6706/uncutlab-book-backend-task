@@ -1,8 +1,7 @@
 import { Book } from "./model";
 
 export default interface BookRepository {
-    // createUser(user: User): Promise<User>
-    createUser(book: Book): Promise<Book>;
+    createBook(book: Book): Promise<Book>;
     getBooks(
         searchText?:
         string,

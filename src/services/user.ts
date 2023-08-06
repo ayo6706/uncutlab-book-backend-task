@@ -39,7 +39,7 @@ export default class UserService {
             if (!user) {
                 return failedPromise(errors.ErrIncorrectCredentials);
             }
-            
+
             const isMatch = await bcrypt.compare(password, user.password!);
             if (!isMatch) {
                 return failedPromise(errors.ErrIncorrectCredentials);

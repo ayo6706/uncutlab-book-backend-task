@@ -34,7 +34,7 @@ const UserModel = (sequelizeInstance: Sequelize) => {
             allowNull: false,
             set(value: string) {
                 if (value !== undefined) {
-                this.setDataValue("lastname", value.charAt(0).toUpperCase() + value.slice(1).toLowerCase());
+                    this.setDataValue("lastname", value.charAt(0).toUpperCase() + value.slice(1).toLowerCase());
                 }
             },
         },
@@ -43,7 +43,7 @@ const UserModel = (sequelizeInstance: Sequelize) => {
             unique: true,
             set(value: string) {
                 if (value !== undefined) {
-                this.setDataValue("email", value.toLowerCase());
+                    this.setDataValue("email", value.toLowerCase());
                 }
             },
         },
@@ -64,7 +64,7 @@ const UserModel = (sequelizeInstance: Sequelize) => {
             },
             afterFind(results: User) {
                 if (results === null) {
-                    return;
+
                 }
             },
         },

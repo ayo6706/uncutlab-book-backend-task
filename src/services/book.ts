@@ -14,7 +14,7 @@ export default class BookService {
                 return failedPromise(errors.ErrExistingBook);
             }
 
-            const result = await this.repo.createUser(book);
+            const result = await this.repo.createBook(book);
             return BookMapper.toDto(result);
         } catch (error: any) {
             return failedPromise(error);
@@ -71,14 +71,14 @@ export default class BookService {
     }
 
     async getBook(
-        id: string
+        id: string,
     ): Promise<BookDto> {
         try {
             const book = await this.repo.getBookById(
-                id
+                id,
             );
-            
-            if(!book){
+
+            if (!book) {
                 return failedPromise(errors.ErrBookDoesNotExist);
             }
             return BookMapper.toDto(book);

@@ -40,5 +40,6 @@
 export interface BookDto {
     id?: string,
     title?: string,
-    author?: string
+    author?: string,
+    file?: string
 }

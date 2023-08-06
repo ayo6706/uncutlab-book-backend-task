@@ -56,7 +56,7 @@ export default class Http {
             this.basePath(this.bookHandler.path()),
             this.bookHandler.routes(),
         );
-      
+
         const swagger = new SwaggerHandler();
         app.use(this.basePath(swagger.path()), swagger.routes());
 

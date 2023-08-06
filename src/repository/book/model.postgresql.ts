@@ -9,11 +9,12 @@ import { Book } from "./model";
 const BookDB = BookModel(PostgresqlConnect);
 
 export default class BookRepositoryPostgreSql implements BookRepository {
-    async createUser(book: Book): Promise<Book> {
+    async createBook(book: Book): Promise<Book> {
         try {
             const createdUser = await BookDB.create({
                 title: book.title,
                 author: book.author,
+                file: book.file,
             });
             return Promise.resolve(createdUser);
         } catch (error: any) {

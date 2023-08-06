@@ -5,6 +5,8 @@ class Book extends Model {
     public title!: string;
 
     public author!: string;
+
+    public file!: string;
 }
 
 const BookModel = (sequelizeInstance: Sequelize) => {
@@ -18,6 +20,10 @@ const BookModel = (sequelizeInstance: Sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
+            file: {
+                type: DataTypes.STRING,
+                allowNull: true
+            }
         },
         {
             sequelize: sequelizeInstance,

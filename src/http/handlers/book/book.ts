@@ -49,6 +49,7 @@ export default class BookHandler implements Handler {
      */
     async createBook(req: AuthRequest, res: Response, next: NextFunction) {
         try {
+            let file;
             const {
                 title,
                 author,
@@ -59,7 +60,11 @@ export default class BookHandler implements Handler {
             const book = {
                 title,
                 author,
+                file,
             };
+            if (req.file) {
+                file = req.file!.path;
+            }
             const result = await this.service.createBook(
                 book,
             );
@@ -68,7 +73,6 @@ export default class BookHandler implements Handler {
             return next(error);
         }
     }
-
 
      /**
      * @openapi
@@ -85,7 +89,7 @@ export default class BookHandler implements Handler {
      *     security:
      *      - bearerAuth: []
      */
-     async updateBook(req: AuthRequest, res: Response, next: NextFunction) {
+    async updateBook(req: AuthRequest, res: Response, next: NextFunction) {
         try {
             const {
                 id,
@@ -163,7 +167,6 @@ export default class BookHandler implements Handler {
         }
     }
 
-
     /**
      * @openapi
      * /book:
@@ -183,11 +186,10 @@ export default class BookHandler implements Handler {
      */
     async getBook(req: AuthRequest, res: Response, next: NextFunction) {
         try {
-            let id: string; 
+            let id: string;
 
             if (req.query.id) {
                 id = req.query.id as any;
-
             } else {
                 return next(errors.ErrMissingParameter);
             }
@@ -198,6 +200,7 @@ export default class BookHandler implements Handler {
             return next(error);
         }
     }
+
       /**
      * @openapi
      * /book:

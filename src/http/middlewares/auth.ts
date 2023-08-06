@@ -27,12 +27,9 @@ export default new Strategy(
                 if (user) {
                     req.user = user;
                     return done(undefined, user, jwtToken);
-                } else {
-                    return done(undefined, false);
                 }
+                return done(undefined, false);
             })
-            .catch((err: any) => {
-                return done(err, false);
-            });
+            .catch((err: any) => done(err, false));
     }),
 );
