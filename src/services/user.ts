@@ -34,15 +34,12 @@ export default class UserService {
         email: string,
     ): Promise<UserDto> {
         try {
-            let user;
-            if (email) {
-                user = await this.repo.findUserByEmail(email);
-            }
+            const user = await this.repo.findUserByEmail(email);
 
             if (!user) {
                 return failedPromise(errors.ErrIncorrectCredentials);
             }
-
+            
             const isMatch = await bcrypt.compare(password, user.password!);
             if (!isMatch) {
                 return failedPromise(errors.ErrIncorrectCredentials);

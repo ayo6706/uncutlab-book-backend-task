@@ -66,13 +66,6 @@ const UserModel = (sequelizeInstance: Sequelize) => {
                 if (results === null) {
                     return;
                 }
-                if (results instanceof Array) {
-                    for (const result of results) {
-                        delete result.dataValues.password;
-                    }
-                } else {
-                    delete results.dataValues.password;
-                }
             },
         },
     });

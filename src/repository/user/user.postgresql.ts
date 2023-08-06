@@ -9,7 +9,6 @@ const UserDB = UserModel(PostgresqlConnect);
 
 export default class UserRepositoryPostgreSql implements UserRepository {
     async createUser(user: User): Promise<User> {
-        console.log("repo",user)
         try {
             const createdUser = await UserDB.create({
                 firstname: user.firstname,
@@ -33,7 +32,7 @@ export default class UserRepositoryPostgreSql implements UserRepository {
                     },
                 },
             );
-            return Promise.resolve(<User>user);
+            return Promise.resolve(<User>user?.get());
         } catch (err: any) {
             log.error(err);
             throw new DatabaseError(err);
@@ -49,7 +48,7 @@ export default class UserRepositoryPostgreSql implements UserRepository {
             throw new DatabaseError(err);
         }
     }
-    
+
     async updateUser(userObj: any): Promise<User> {
         const { id } = userObj;
         try {
