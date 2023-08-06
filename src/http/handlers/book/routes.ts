@@ -16,6 +16,11 @@ export default function routes(handler: any): express.Router {
     router.get(
         "/",
         passport.authenticate("jwt", { session: false }),
+        handler.getBook.bind(handler),
+    );
+    router.get(
+        "/find",
+        passport.authenticate("jwt", { session: false }),
         handler.getBooks.bind(handler),
     );
     router.delete(

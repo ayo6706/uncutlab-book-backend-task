@@ -76,12 +76,12 @@ export default class BookHandler implements Handler {
      *   patch:
      *     tags:
      *      - Book
-     *     summary: create a new book
+     *     summary: update a book
      *     requestBody:
      *      $ref: '#/components/requestBodies/UpdateBook'
      *     responses:
      *        200:
-     *          description: book successfully created
+     *          description: book successfully updated
      *     security:
      *      - bearerAuth: []
      */
@@ -111,7 +111,7 @@ export default class BookHandler implements Handler {
 
     /**
      * @openapi
-     * /book:
+     * /book/find:
        *   get:
      *    summary: get books
      *    tags:
@@ -163,6 +163,41 @@ export default class BookHandler implements Handler {
         }
     }
 
+
+    /**
+     * @openapi
+     * /book:
+       *   get:
+     *    summary: get books
+     *    tags:
+     *      - Book
+     *    parameters:
+     *     - in: query
+     *       name: id
+     *       schema:
+     *        type: string
+     *        default: 2
+     *    responses:
+     *     200:
+     *      description: gotten books
+     */
+    async getBook(req: AuthRequest, res: Response, next: NextFunction) {
+        try {
+            let id: string; 
+
+            if (req.query.id) {
+                id = req.query.id as any;
+
+            } else {
+                return next(errors.ErrMissingParameter);
+            }
+
+            const result = await this.service.getBook(id);
+            return ok("gotten book", result).send(res);
+        } catch (error: any) {
+            return next(error);
+        }
+    }
       /**
      * @openapi
      * /book:

@@ -41,7 +41,7 @@ export default class BookService {
             const bookExists = await this.repo.getBookById(id);
 
             if (!bookExists) {
-                return failedPromise("Book not found");
+                return failedPromise(errors.ErrBookDoesNotExist);
             }
 
             const result = await this.repo.deleteBook(id);
@@ -65,6 +65,23 @@ export default class BookService {
                 limit,
             );
             return BookMapper.toDtoArray(books);
+        } catch (error: any) {
+            return failedPromise(error);
+        }
+    }
+
+    async getBook(
+        id: string
+    ): Promise<BookDto> {
+        try {
+            const book = await this.repo.getBookById(
+                id
+            );
+            
+            if(!book){
+                return failedPromise(errors.ErrBookDoesNotExist);
+            }
+            return BookMapper.toDto(book);
         } catch (error: any) {
             return failedPromise(error);
         }
